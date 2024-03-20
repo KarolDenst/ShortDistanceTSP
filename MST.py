@@ -64,11 +64,11 @@ def construct_tree_from_mst_edges(mst_edges, locations):
             if index not in node_map:
                 node_map[index] = Node(index, locations[index][0], locations[index][1])
 
-    # Set up the children based on mst_edges
+    # Set up the neighbors based on mst_edges
     for a, b in mst_edges:
-        node_map[a].children.append(node_map[b])
+        node_map[a].neighbors.append(node_map[b])
         # Assuming undirected graph; if directed, remove the next line
-        node_map[b].children.append(node_map[a])
+        node_map[b].neighbors.append(node_map[a])
 
     # Return the root node (assuming the first index as root for simplicity)
     return node_map[mst_edges[0][0]] if mst_edges else None

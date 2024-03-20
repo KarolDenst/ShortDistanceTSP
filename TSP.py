@@ -38,7 +38,7 @@ def order_nodes(node, ordered_nodes):
     :param ordered_nodes: The list of ordered nodes.
     """
     node.visited = True
-    for child in node.children:
+    for child in node.neighbors:
         if child.visited:
             continue
         order_nodes(child, ordered_nodes)
@@ -50,7 +50,7 @@ def get_reachable_matrix(root, num_nodes):
 
     def traverse_and_mark(node):
         node.visited = True
-        for child in node.children:
+        for child in node.neighbors:
             if child.visited:
                 continue
             neighbor_matrix[node.index][child.index] = 1

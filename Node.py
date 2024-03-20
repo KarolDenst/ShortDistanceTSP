@@ -4,10 +4,10 @@ class Node:
         self.index = index  # The index of the node
         self.x = x  # The x-coordinate of the node
         self.y = y  # The y-coordinate of the node
-        self.children = []  # List of children nodes
+        self.neighbors = []  # List of neighbors nodes
 
     def clear(self):
         self.visited = False
-        for child in self.children:
+        for child in self.neighbors:
             if child.visited:
                 child.clear()

@@ -22,15 +22,15 @@ def create_tree(seed=None):
 
 def create_children(parent, depth):
     """
-    Recursively create children for each node with random locations based on the parent's location.
+    Recursively create neighbors for each node with random locations based on the parent's location.
 
     :param parent: The parent node.
     :param depth: Current depth in the tree, used to calculate the y offset.
     """
-    num_children = random.randint(1, 2)  # Random number of children (0 to 3)
+    num_children = random.randint(1, 2)  # Random number of neighbors (0 to 3)
     for i in range(num_children):
         # Calculate child's location based on the parent's location and index
-        y_offset = -0.15
+        y_offset = -0.20
         x_offset = 0.1 * (i - (num_children - 1) / 2) / depth
         child_x = parent.x + x_offset
         child_y = parent.y + y_offset
@@ -40,5 +40,5 @@ def create_children(parent, depth):
             global index
             child = Node(index, child_x, child_y)
             index += 1
-            parent.children.append(child)
+            parent.neighbors.append(child)
             create_children(child, depth + 1)

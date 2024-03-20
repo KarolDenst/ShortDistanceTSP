@@ -22,7 +22,7 @@ def visualize_mst_with_cycle(root, cycle):
             return
         node.visited = True
         # plot_node(node)
-        for child in node.children:
+        for child in node.neighbors:
             plot_edge(node, child)
             traverse_and_plot(child)
 
