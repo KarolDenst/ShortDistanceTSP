@@ -1,3 +1,6 @@
+import sys
+
+from FileManager import read_distance_matrix_from_file, save_result_to_file
 from MST import create_mst
 from TPSDataGenerator import (
     generate_random_locations,
@@ -42,7 +45,54 @@ def visualize_tree(seed):
     print(index_list)
 
 
+def find_max_edge_length(tsp, distance_matrix):
+    max_edge_length = 0
+    for i in range(len(tsp)):
+        for j in range(i + 1, len(tsp)):
+            distance = distance_matrix[tsp[i].index][tsp[j].index]
+            if distance > max_edge_length:
+                max_edge_length = distance
+    
+    if len(tsp) > 1: 
+        distance = distance_matrix[tsp[-1].index][tsp[0].index]
+        if distance > max_edge_length:
+            max_edge_length = distance
+
+    return str(max_edge_length)
+
+
+
+def main():
+    args = sys.argv[1:]
+    
+    if len(args) == 0:
+        print("No arguments. Provide one of the possible options: \n\t-> python main.py random <seed> <number_of_locations> \n\t-> python main.py test \n\t-> python main.py <path_to_source_file>")
+        return
+    
+    if args[0] == 'help':
+        print("Possible options: \n\t-> python main.py random <seed> <number_of_locations> \n\t-> python main.py test \n\t-> python main.py <path_to_source_file>")
+        return
+    if args[0] == 'random':
+        if len(args) < 2:
+            print("Provide seed:\n\t python main.py random <seed> <number_of_locations>")
+            return
+        if len(args) < 3:
+            print("Provide number of locations:\n\t python main.py random <seed> <number_of_locations>")
+            return
+        seed = int(args[1])
+        n = int(args[2])
+        visualize(n, seed)
+        return
+    
+    distance_matrix = read_distance_matrix_from_file(args[0])
+    locations = [(0, 0) for _ in range(distance_matrix.shape[0])]
+    mst = create_mst(distance_matrix, locations)
+    tsp = find_tsp(mst)
+    save_result_to_file(args[0], tsp, find_max_edge_length(tsp, distance_matrix))
+    
+
 if __name__ == "__main__":
+    main()
     # visualize(10, 2)
-    visualize_tree(None)
+    # visualize_tree(None)
     # test(20)
