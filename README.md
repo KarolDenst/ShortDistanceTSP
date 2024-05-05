@@ -12,7 +12,7 @@ python main.py <path_to_file>
 ```
 
 ## Random input
-Command creates a random planar graph with specified number of vertices based on the seed. It then displays the solution for the created graph:
+Command creates a random planar graph with the specified number of vertices based on the seed. It then displays the solution for the created graph:
 ```
 python main.py -random <seed> <number_of_vertices>>
 ```
