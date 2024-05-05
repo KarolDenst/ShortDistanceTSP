@@ -11,10 +11,10 @@ from Tree import create_tree
 from Visualize import visualize_mst_with_cycle
 
 
-def test(n):
+def test(n, max):
     i = 0
     index = 1
-    while True:
+    while i < max:
         locations = generate_random_locations(n, i)
         distance_matrix = create_distance_matrix_from_locations(locations)
         mst = create_mst(distance_matrix, locations)
@@ -24,8 +24,8 @@ def test(n):
             break
         i += 1
 
-        if i == index:
-            print(f"Done for the first {index} seeds")
+        if i == index or i == max:
+            print(f"Done for the first {i} seeds")
             index *= 10
 
 
@@ -66,22 +66,31 @@ def main():
     args = sys.argv[1:]
     
     if len(args) == 0:
-        print("No arguments. Provide one of the possible options: \n\t-> python main.py random <seed> <number_of_locations> \n\t-> python main.py test \n\t-> python main.py <path_to_source_file>")
+        print("No arguments. Possible options: \n\t-> python main.py -help \n\t-> python main.py -random <seed> <number_of_locations> \n\t-> python main.py -test <number_of_locations> <number_of_iterations> \n\t-> python main.py <path_to_source_file>")
         return
     
-    if args[0] == 'help':
-        print("Possible options: \n\t-> python main.py random <seed> <number_of_locations> \n\t-> python main.py test \n\t-> python main.py <path_to_source_file>")
+    if args[0] == '-help':
+        print("Possible options: \n\t-> python main.py -help \n\t-> python main.py -random <seed> <number_of_locations> \n\t-> python main.py -test <number_of_locations> <number_of_iterations> \n\t-> python main.py <path_to_source_file>")
         return
-    if args[0] == 'random':
+    if args[0] == '-random':
         if len(args) < 2:
-            print("Provide seed:\n\t python main.py random <seed> <number_of_locations>")
+            print("No seed. Expected command:\n\t python main.py -random <seed> <number_of_locations>")
             return
         if len(args) < 3:
-            print("Provide number of locations:\n\t python main.py random <seed> <number_of_locations>")
+            print("No number of locations. Expected command:\n\t python main.py -random <seed> <number_of_locations>")
             return
         seed = int(args[1])
         n = int(args[2])
         visualize(n, seed)
+        return
+    if args[0] == '-test':
+        if len(args) < 2:
+            print("No number of locations. Expected command:\n\t python main.py -test <number_of_locations> <number_of_iterations>")
+            return
+        if len(args) < 3:
+            print("No number of iterations. Expected command:\n\t python main.py -test <number_of_locations> <number_of_iterations>")
+            return
+        test(int(args[1]), int(args[2]))
         return
     
     distance_matrix = read_distance_matrix_from_file(args[0])
