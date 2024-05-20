@@ -19,4 +19,4 @@ def save_result_to_file(input_file_path, tsp, max_edge_length):
     output_file_path = os.path.join(input_directory, os.path.splitext(os.path.basename(input_file_path))[0] + "_result_" + time.strftime("%Y%m%d%H%M%S") + ".txt")
     with open(output_file_path, 'w') as file:
         file.write(' '.join(map(str, index_list)) + '\n')
-        file.write(max_edge_length)
+        file.write(str(max_edge_length))

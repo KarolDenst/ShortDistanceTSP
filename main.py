@@ -47,18 +47,17 @@ def visualize_tree(seed):
 
 def find_max_edge_length(tsp, distance_matrix):
     max_edge_length = 0
-    for i in range(len(tsp)):
-        for j in range(i + 1, len(tsp)):
-            distance = distance_matrix[tsp[i].index][tsp[j].index]
-            if distance > max_edge_length:
-                max_edge_length = distance
+    for i in range(len(tsp) - 1):
+        distance = distance_matrix[tsp[i].index][tsp[i + 1].index]
+        if distance > max_edge_length:
+            max_edge_length = distance
     
     if len(tsp) > 1: 
         distance = distance_matrix[tsp[-1].index][tsp[0].index]
         if distance > max_edge_length:
             max_edge_length = distance
 
-    return str(max_edge_length)
+    return max_edge_length
 
 
 
