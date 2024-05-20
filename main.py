@@ -1,17 +1,17 @@
 import sys
 
-from FileManager import read_distance_matrix_from_file, save_result_to_file
-from MST import create_mst
-from TPSDataGenerator import (
+from input_output.FileManager import read_distance_matrix_from_file, save_result_to_file
+from algortihm.MST import create_mst
+from tests.TSPDataGenerator import (
     generate_random_locations,
     create_distance_matrix_from_locations,
 )
-from TSP import find_tsp
-from Tree import create_tree
-from Visualize import visualize_mst_with_cycle
+from algortihm.TSP import find_tsp
+from algortihm.Tree import create_tree
+from input_output.Visualize import visualize_mst_with_cycle
 
 
-def test(n, max):
+def random_test(n, max):
     i = 0
     index = 1
     while i < max:
@@ -82,6 +82,10 @@ def main():
         seed = int(args[1])
         n = int(args[2])
         visualize(n, seed)
+        return
+    if args[0] == '-test':
+        print("Tests started...")
+        
         return
     
     distance_matrix = read_distance_matrix_from_file(args[0])
