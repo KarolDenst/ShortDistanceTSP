@@ -92,6 +92,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # visualize(10, 2)
-    # visualize_tree(None)
-    # test(20)

@@ -187,3 +187,6 @@ fabric.properties
 
 # tests results
 tests/output/
+
+# generated files by fileGenerator.py
+generatedFiles/
