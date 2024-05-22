@@ -1,9 +1,7 @@
 import random
 
-from algortihm.Node import Node
 
 index = 0
-
 
 def create_tree(seed=None):
     """

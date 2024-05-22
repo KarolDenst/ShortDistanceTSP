@@ -82,10 +82,6 @@ def main():
         n = int(args[2])
         visualize(n, seed)
         return
-    if args[0] == '-test':
-        print("Tests started...")
-        
-        return
     
     distance_matrix = read_distance_matrix_from_file(args[0])
     locations = [(0, 0) for _ in range(distance_matrix.shape[0])]
