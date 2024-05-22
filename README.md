@@ -17,3 +17,9 @@ Command creates a random planar graph with the specified number of vertices base
 python main.py -random <seed> <number_of_vertices>>
 ```
 
+## Test
+Command runs tests:
+```
+python test.py
+```
+
