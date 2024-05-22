@@ -14,7 +14,7 @@ def save_distance_matrix_to_file(distance_matrix, directory, n, seed):
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
-        print("Usage: python script.py <number_of_locations> <seed>")
+        print("Usage: python fileGenerator.py <number_of_locations> <seed>")
         sys.exit(1)
     
     try:
