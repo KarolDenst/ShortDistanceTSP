@@ -80,16 +80,19 @@ def process_all_txt_files(input_directory, output_directory):
 
                 with open('./tests/output/test_results.txt', 'a') as results_file:
                     if os.stat('./tests/output/test_results.txt').st_size == 0:
-                        results_file.write("test optimal_result result error percentage_error max_edge_length max_mst_edge_length 3*max_mst_edge_length\n")
-                    results_file.write("{file_name} {optimal:.2f} {test:.2f} {err:.2f} {perc_err:.2f} {max_edge:.2f} {max_mst_edge:.2f} {three_max_mst:.2f}\n".format(
-                        file_name=file_name_without_extension,
-                        optimal=optimal_result,
-                        test=test_result,
-                        err=error,
-                        perc_err=percentage_error,
-                        max_edge=max_edge_length,
-                        max_mst_edge=max_mst_edge_length,
-                        three_max_mst=3 * max_mst_edge_length
+                        results_file.write("{:<15} {:<20} {:<20} {:<20} {:<20} {:<20} {:<20} {:<25} {:<50}\n".format(
+                            "test", "optimal_result", "result", "error", "percentage_error", "max_edge_length", "max_mst_edge_length", "3*max_mst_edge_length", "max_edge_length<=3*max_mst_edge_length"
+                        ))
+                    results_file.write("{:<15} {:<20.2f} {:<20.2f} {:<20.2f} {:<20.2f} {:<20.2f} {:<20.2f} {:<25.2f} {:<50}\n".format(
+                        file_name_without_extension,
+                        optimal_result,
+                        test_result,
+                        error,
+                        percentage_error,
+                        max_edge_length,
+                        max_mst_edge_length,
+                        3 * max_mst_edge_length,
+                        str(max_edge_length <= 3 * max_mst_edge_length)
                     ))
 
             print(f"Finished test {file_name_without_extension}.")
