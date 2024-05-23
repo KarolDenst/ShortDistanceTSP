@@ -18,7 +18,7 @@ python main.py -random <seed> <number_of_vertices>>
 ```
 
 ## Test
-Command runs tests:
+Command runs tests and saves result in '.\tests\output':
 ```
 python test.py
 ```
