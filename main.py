@@ -1,17 +1,17 @@
 import sys
 
-from FileManager import read_distance_matrix_from_file, save_result_to_file
-from MST import create_mst
-from TPSDataGenerator import (
+from input_output.FileManager import read_distance_matrix_from_file, save_result_to_file
+from algortihm.MST import create_mst
+from tests.TSPDataGenerator import (
     generate_random_locations,
     create_distance_matrix_from_locations,
 )
-from TSP import find_tsp
-from Tree import create_tree
-from Visualize import visualize_mst_with_cycle
+from algortihm.TSP import find_tsp
+from algortihm.Tree import create_tree
+from input_output.Visualize import visualize_mst_with_cycle
 
 
-def test(n, max):
+def random_test(n, max):
     i = 0
     index = 1
     while i < max:
@@ -47,18 +47,17 @@ def visualize_tree(seed):
 
 def find_max_edge_length(tsp, distance_matrix):
     max_edge_length = 0
-    for i in range(len(tsp)):
-        for j in range(i + 1, len(tsp)):
-            distance = distance_matrix[tsp[i].index][tsp[j].index]
-            if distance > max_edge_length:
-                max_edge_length = distance
+    for i in range(len(tsp) - 1):
+        distance = distance_matrix[tsp[i].index][tsp[i + 1].index]
+        if distance > max_edge_length:
+            max_edge_length = distance
     
     if len(tsp) > 1: 
         distance = distance_matrix[tsp[-1].index][tsp[0].index]
         if distance > max_edge_length:
             max_edge_length = distance
 
-    return str(max_edge_length)
+    return max_edge_length
 
 
 
@@ -93,6 +92,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    # visualize(10, 2)
-    # visualize_tree(None)
-    # test(20)

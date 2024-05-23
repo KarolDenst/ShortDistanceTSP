@@ -17,3 +17,15 @@ Command creates a random planar graph with the specified number of vertices base
 python main.py -random <seed> <number_of_vertices>>
 ```
 
+## Test
+Command runs tests and saves result in '.\tests\output':
+```
+python test.py
+```
+
+## File generator
+Command generates an input file in './generatedFiles' directory based on the given seed and number of locations:
+```
+python fileGenerator.py <number_of_locations> <seed>
+```
+
